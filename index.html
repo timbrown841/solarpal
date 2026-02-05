@@ -1,0 +1,749 @@
+<!-- SolarPal Landing Page (single-file) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SolarPal | Reliable Off-Grid Power for Homes & Businesses</title>
+  <meta name="description" content="SolarPal supplies premium solar-rechargeable power stations for homes, clinics, and SMEs in Ghana and DR Congo. Power your fridge, TV, lights and Wi-Fi—no fuel, no noise." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <style>
+    :root{
+  --bg:#ffffff;
+  --card:#ffffff;
+  --card2:#f8fafc;
+  --ink:#0f172a;
+  --muted:#475569;
+  --muted2:#64748b;
+  --line:rgba(15,23,42,.12);
+  --accent:#4f46e5;   /* indigo */
+  --accent2:#16a34a;  /* green */
+  --warn:#f59e0b;
+  --shadow: 0 12px 30px rgba(15,23,42,.08);
+  --radius:18px;
+  --max:1120px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+	margin:0;
+	font-family:var(--font);
+	color:#0f172a; /* dark text */
+	background:#ffffff; /* WHITE background */
+	line-height:1.5;
+	}
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:14px}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--accent2);box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      border:1px solid transparent;
+      padding:12px 16px;border-radius:14px;
+      font-weight:700;cursor:pointer;
+      transition:transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.02)}
+    .btn:active{transform:translateY(0px); filter:brightness(.98)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), #4f46e5); color:white}
+    .btn.ghost{background:rgba(255,255,255,.03); border-color:var(--line); color:var(--ink)}
+    .btn.whatsapp{background:linear-gradient(135deg, #22c55e, #16a34a); color:#03130a}
+    .btn.small{padding:10px 14px;border-radius:12px;font-size:14px}
+
+    /* Header */
+    header{
+	position:sticky;
+	top:0;
+	z-index:50;
+	background:#ffffff;
+	border-bottom:1px solid var(--line);
+	}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.2px
+    }
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.85), rgba(255,255,255,.08) 55%, transparent 56%),
+        linear-gradient(135deg, rgba(124,92,255,1), rgba(34,197,94,1));
+      box-shadow: 0 10px 30px rgba(124,92,255,.22);
+    }
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{
+      color:var(--muted);
+      font-weight:650;
+      padding:10px 10px;border-radius:12px;
+      border:1px solid transparent;
+    }
+    nav a:hover{color:var(--ink); border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.03)}
+    .ctaRow{display:flex;gap:10px;align-items:center}
+
+    /* Hero */
+    .hero{padding:44px 0 26px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .heroLeft{
+	background:#f8fafc;
+	}
+    .hero h1{margin:14px 0 10px; font-size:44px; line-height:1.08}
+    .hero p{margin:0 0 18px; color:var(--muted); font-size:18px}
+    .bullets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 20px}
+    .bullet{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:12px 12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgb(255,255,255);
+      color:var(--muted);
+      font-weight:600;
+    }
+    .check{
+      width:22px;height:22px;border-radius:8px;
+      background:rgba(34,197,94,.16);
+      border:1px solid rgba(34,197,94,.35);
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+    }
+    .check svg{width:14px;height:14px;fill:var(--accent2)}
+    .heroActions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+    .heroRight{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgb(255,255,255), rgb(255,255,255));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;flex-direction:column;
+    }
+    .cardTop{padding:18px 18px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .cardTop h3{margin:0 0 6px;font-size:18px}
+    .cardTop p{margin:0;color:var(--muted);font-size:14px}
+    .statGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 18px 18px}
+    .stat{
+      padding:14px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+    .stat .k{font-size:22px;font-weight:900}
+    .stat .l{font-size:13px;color:var(--muted);margin-top:4px}
+    .note{
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Sections */
+    section{padding:34px 0}
+    .sectionTitle{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .sectionTitle h2{margin:0;font-size:28px}
+    .sectionTitle p{margin:0;color:var(--muted);max-width:680px}
+
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{
+	padding:18px;
+	border-radius:var(--radius);
+	border:1px solid var(--line);
+	background:#ffffff;
+	box-shadow:var(--shadow);
+	}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    .tagRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{font-size:12px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);color:var(--muted)}
+    .countryTabs{display:flex;gap:10px;flex-wrap:wrap}
+    .tab{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);color:var(--ink);border-radius:999px;padding:10px 12px;font-weight:750;cursor:pointer}
+    .tab[aria-selected="true"]{background:linear-gradient(135deg, rgba(124,92,255,.35), rgba(34,197,94,.22)); border-color:rgba(255,255,255,.16)}
+    .priceBox{margin-top:12px;padding:14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+    .priceLine{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-weight:650}
+    .priceLine strong{color:var(--ink)}
+    .fine{margin-top:10px;color:var(--muted2);font-size:12px}
+
+    /* FAQ */
+    details{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      background:rgba(255,255,255,.02);
+      padding:12px 14px;
+    }
+    details summary{cursor:pointer;font-weight:800}
+    details p{margin:10px 0 0;color:var(--muted)}
+    .faq{display:grid;gap:10px}
+
+    /* Footer */
+    footer{
+      padding:26px 0 38px;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+    .footerGrid{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+    .mini{font-size:12px;color:var(--muted2);max-width:820px}
+
+    /* Forms */
+    .form{
+      display:grid;gap:10px;margin-top:10px
+    }
+    label{font-size:13px;color:var(--muted)}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgb(255,255,255);
+      color:var(--ink);
+      outline:none;
+    }
+    textarea{min-height:92px;resize:vertical}
+    .formRow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hint{font-size:12px;color:var(--muted2)}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr}
+      .hero h1{font-size:38px}
+      nav{display:none}
+    }
+    @media (max-width: 560px){
+      .bullets{grid-template-columns:1fr}
+      .grid3,.grid2{grid-template-columns:1fr}
+      .formRow{grid-template-columns:1fr}
+      .hero h1{font-size:34px}
+    }
+	
+	.logo-img{
+	height:100px;        /* was ~38px */
+	width:auto;
+	display:block;
+	}
+	
+	@media (min-width: 768px){
+  .logo-img{
+    height:200px;
+  }
+}
+
+	.logo-header{
+	height:180px;
+	}
+
+	@media (max-width: 480px){
+	.logo-header{
+    height:200px;
+	}
+}
+
+	.logo-footer{
+	height:48px;     /* footer logo size */
+	opacity:0.95;    /* subtle polish */
+	}
+
+	@media (min-width: 768px){
+	.logo-footer{
+    height:56px;
+	}
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand" aria-label="SolarPal">
+          <img src="solarpal_logoV5NT.png" alt="SolarPal logo" class="logo-img logo-header">
+		  <div>
+			<div style="font-weight:700;font-size:14px;color:var(--muted)">
+        </div>
+		</div>
+
+        <nav aria-label="Primary navigation">
+          <a href="#solutions">Solutions</a>
+          <a href="#countries">Ghana / DR Congo</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="ctaRow">
+          <a class="btn ghost small" href="#contact">Get a quote</a>
+          <a class="btn whatsapp small" id="waTop" href="#" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="heroLeft">
+            <div class="pill">
+              <span class="dot" aria-hidden="true"></span>
+              Stock available • Ghana & DR Congo • Cash / instalments
+            </div>
+
+            <h1>No more blackouts. No more fuel. Own your power.</h1>
+            <p>
+              SolarPal supplies premium solar-rechargeable power stations that run your
+              <strong>fridge, TV, lights & Wi-Fi</strong>—quietly and reliably.
+            </p>
+
+            <div class="bullets" aria-label="Key benefits">
+              <div class="bullet">
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Solar rechargeable (bundle options)
+              </div>
+              <div class="bullet">
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Silent backup power (no generator noise)
+              </div>
+              <div class="bullet">
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Powers essentials: fridge, TV, lights, Wi-Fi
+              </div>
+              <div class="bullet">
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                </span>
+                Warranty + local delivery support
+              </div>
+            </div>
+
+            <div class="heroActions">
+              <a class="btn primary" href="#contact">Request pricing</a>
+              <a class="btn ghost" href="#pricing">See packages</a>
+              <a class="btn whatsapp" id="waHero" href="#" rel="noopener">Chat on WhatsApp</a>
+            </div>
+
+            <div class="fine">
+              Note: Runtime and solar recharge times depend on your devices, sun conditions and panel size.
+            </div>
+          </div>
+
+          <aside class="heroRight" aria-label="At-a-glance info">
+            <div class="cardTop">
+              <h3>Recommended “Essentials” Setup</h3>
+              <p>Studio / 1-bed: efficient fridge + 32" TV + lights</p>
+            </div>
+
+            <div class="statGrid">
+              <div class="stat">
+                <div class="k">~2 kWh</div>
+                <div class="l">Recommended capacity (comfortable)</div>
+              </div>
+              <div class="stat">
+                <div class="k">400–600W</div>
+                <div class="l">Solar panels (for daily top-up)</div>
+              </div>
+              <div class="stat">
+                <div class="k">Cash</div>
+                <div class="l">Best price & fastest delivery</div>
+              </div>
+              <div class="stat">
+                <div class="k">Installments</div>
+                <div class="l">Available for approved buyers</div>
+              </div>
+            </div>
+
+            <div class="note">
+              <strong>What you get:</strong> product guidance, bundle options, and delivery coordination in Ghana / DR Congo.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Solutions that sell themselves</h2>
+            <p>Position SolarPal as a premium alternative to generators: quiet, clean, and dependable.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Home Essentials Backup</h3>
+            <p>Keep your fridge running and enjoy TV, lights, and device charging during outages.</p>
+            <div class="tagRow">
+              <span class="tag">Apartments</span>
+              <span class="tag">Family homes</span>
+              <span class="tag">Quiet indoors</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>SME Continuity</h3>
+            <p>Protect revenue with power for routers, POS devices, lighting, and critical appliances.</p>
+            <div class="tagRow">
+              <span class="tag">Shops</span>
+              <span class="tag">Salons</span>
+              <span class="tag">Offices</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Clinics & Cold Chain</h3>
+            <p>Backup power for essential equipment and refrigeration—ideal for clinics and pharmacies.</p>
+            <div class="tagRow">
+              <span class="tag">Clinics</span>
+              <span class="tag">Pharmacies</span>
+              <span class="tag">Cold storage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUNTRIES -->
+    <section id="countries">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Ghana & DR Congo delivery</h2>
+            <p>Select your country to see the recommended sales message and buyer profile.</p>
+          </div>
+          <div class="countryTabs" role="tablist" aria-label="Country selector">
+            <button class="tab" role="tab" aria-selected="true" aria-controls="panel-gh" id="tab-gh">Ghana</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="panel-cd" id="tab-cd">DR Congo</button>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card" id="panel-gh" role="tabpanel" aria-labelledby="tab-gh">
+            <h3>Ghana</h3>
+            <p>
+              Best for repeat sales: SMEs, homes, clinics, salons, shops. Push instalments and bundles.
+            </p>
+            <div class="priceBox">
+              <div class="priceLine"><span>Primary offer</span><strong>Cash + Instalments</strong></div>
+              <div class="priceLine"><span>Top buyer segments</span><strong>SMEs • Clinics • Homes</strong></div>
+              <div class="priceLine"><span>Message angle</span><strong>Stop buying fuel</strong></div>
+            </div>
+          </div>
+
+          <div class="card" id="panel-cd" role="tabpanel" aria-labelledby="tab-cd" hidden>
+            <h3>DR Congo</h3>
+            <p>
+              Premium market: NGOs, clinics, mining subcontractors, offices, high-income residences. Cash preferred.
+            </p>
+            <div class="priceBox">
+              <div class="priceLine"><span>Primary offer</span><strong>Cash (Instalments for approved)</strong></div>
+              <div class="priceLine"><span>Top buyer segments</span><strong>Clinics • NGOs • SMEs</strong></div>
+              <div class="priceLine"><span>Message angle</span><strong>Professional backup power</strong></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>What buyers get from SolarPal</h3>
+            <p>
+              Genuine supply, bundle options (solar panels), clear setup guidance, and delivery coordination.
+            </p>
+            <div class="tagRow">
+              <span class="tag">Warranty</span>
+              <span class="tag">Solar bundles</span>
+              <span class="tag">Demo support</span>
+              <span class="tag">Installer partners</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Fast closing offer</h3>
+            <p>
+              Want the quickest sale? Offer a demo video and a clear “reserve stock” process on WhatsApp.
+            </p>
+            <div class="tagRow">
+              <span class="tag">Limited stock</span>
+              <span class="tag">Deposit to reserve</span>
+              <span class="tag">Delivery arranged</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Packages</h2>
+            <p>Choose station-only or bundle with solar panels. Instalments available for approved buyers.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Station Only</h3>
+            <p>Best if you already have panels or want the quickest deployment.</p>
+            <div class="priceBox">
+              <div class="priceLine"><span>Includes</span><strong>Power station</strong></div>
+              <div class="priceLine"><span>Best for</span><strong>Homes • SMEs</strong></div>
+              <div class="priceLine"><span>Lead time</span><strong>Fast</strong></div>
+            </div>
+            <div class="fine">Ask for pricing in GHS / USD / CDF on WhatsApp.</div>
+          </div>
+
+          <div class="card">
+            <h3>Solar Bundle (Recommended)</h3>
+            <p>Solar charging adds independence and reduces reliance on grid charging.</p>
+            <div class="priceBox">
+              <div class="priceLine"><span>Includes</span><strong>Station + panels</strong></div>
+              <div class="priceLine"><span>Best for</span><strong>Daily top-up</strong></div>
+              <div class="priceLine"><span>Lead time</span><strong>Standard</strong></div>
+            </div>
+            <div class="fine">Panel wattage depends on your daily load and sun conditions.</div>
+          </div>
+
+          <div class="card">
+            <h3>Business/Clinic Package</h3>
+            <p>Premium setup for operations that cannot afford downtime.</p>
+            <div class="priceBox">
+              <div class="priceLine"><span>Includes</span><strong>Bundle + guidance</strong></div>
+              <div class="priceLine"><span>Best for</span><strong>Clinics • Pharmacies</strong></div>
+              <div class="priceLine"><span>Optional</span><strong>Installer referral</strong></div>
+            </div>
+            <div class="fine">Ask for a tailored quote based on your equipment list.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>FAQ</h2>
+            <p>Common buyer questions. For exact runtime calculations, share your device list on WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>How long will it run my fridge, TV, and lights?</summary>
+            <p>
+              Runtime depends on your fridge efficiency, TV wattage, number of bulbs and hours used. As a planning rule,
+              a studio/1-bed “essentials” setup often uses ~0.8–1.4 kWh/day.
+            </p>
+          </details>
+
+          <details>
+            <summary>How fast does solar charging work?</summary>
+            <p>
+              Solar charging depends on panel wattage, sun quality, shading, and the unit’s solar input limit.
+              Many users choose 400–600W of panels for daily top-ups in good sun.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do you offer instalments?</summary>
+            <p>
+              Yes—instalments are available for approved buyers. A deposit is required, and ownership transfers after full payment.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do you deliver in Ghana and DR Congo?</summary>
+            <p>
+              Yes. We coordinate delivery and can connect you with installer partners where available.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionTitle">
+          <div>
+            <h2>Request pricing / book a demo</h2>
+            <p>Send your country and what you want to power. We’ll reply with the best package and delivery options.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Send your details</h3>
+            <form class="form" id="leadForm">
+              <div class="formRow">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div>
+                  <label for="country">Country</label>
+                  <select id="country" name="country" required>
+                    <option value="Ghana">Ghana</option>
+                    <option value="DR Congo">DR Congo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <div>
+                  <label for="phone">WhatsApp number</label>
+                  <input id="phone" name="phone" placeholder="+233..." required />
+                </div>
+                <div>
+                  <label for="buyerType">Buyer type</label>
+                  <select id="buyerType" name="buyerType" required>
+                    <option value="Home">Home</option>
+                    <option value="SME">SME / Office</option>
+                    <option value="Clinic">Clinic / Pharmacy</option>
+                    <option value="NGO">NGO</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="needs">What do you want to power?</label>
+                <textarea id="needs" name="needs" placeholder="Example: efficient fridge, 32&quot; TV for 4 hours, 4 LED bulbs for 5 hours, Wi-Fi router"></textarea>
+                <div class="hint">Tip: include hours per day. This helps us estimate the right solar panel size.</div>
+              </div>
+
+              <button class="btn primary" type="submit">Send on WhatsApp</button>
+              <div class="fine">Submitting this form opens WhatsApp with a prefilled message (no data is stored).</div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Direct WhatsApp</h3>
+            <p>Prefer a quick chat? Message SolarPal and we’ll reply with pricing and bundle options.</p>
+            <div class="tagRow" style="margin-top:14px">
+              <span class="tag">Cash price</span>
+              <span class="tag">Instalments (approved)</span>
+              <span class="tag">Solar bundles</span>
+              <span class="tag">Delivery</span>
+            </div>
+
+            <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn whatsapp" id="waContact" href="#" rel="noopener">Message SolarPal</a>
+              <a class="btn ghost" href="#faq">Read FAQ</a>
+            </div>
+
+            <div class="priceBox" style="margin-top:16px">
+              <div class="priceLine"><span>Response time</span><strong>Same day</strong></div>
+              <div class="priceLine"><span>What to send</span><strong>Country + device list</strong></div>
+              <div class="priceLine"><span>Optional</span><strong>Photo of fridge label</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footerGrid">
+        <div style="display:flex;align-items:center;gap:10px">
+          <img src="solarpal_logoV5NT.png" alt="SolarPal logo" class="logo-img logo-footer">
+          <div>
+            <div style="font-weight:900;color:var(--ink)"></div>
+            <div class="mini">Off-grid power • Ghana & DR Congo</div>
+          </div>
+        </div>
+
+        <div class="mini">
+          © <span id="year"></span> SolarPal. Product availability and pricing may change. Solar performance varies by weather and installation.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== CONFIG ======
+    // Replace this with YOUR WhatsApp number in international format (no + sign). Examples:
+    // Ghana: 233XXXXXXXXX  | DRC: 243XXXXXXXXX
+    const WHATSAPP_NUMBER = "233000000000"; // TODO: set your number
+    const BRAND_NAME = "SolarPal";
+
+    // Default prefilled message (used for top buttons)
+    function makeWhatsAppUrl(message){
+      const text = encodeURIComponent(message);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+
+    function setWhatsAppLinks(){
+      const msg = `Hi ${BRAND_NAME}. I want pricing for a solar-rechargeable power station. My country is _____.`;
+      const url = makeWhatsAppUrl(msg);
+
+      document.getElementById("waTop").href = url;
+      document.getElementById("waHero").href = url;
+      document.getElementById("waContact").href = url;
+    }
+
+    // Tabs (Ghana / DR Congo)
+    const tabGH = document.getElementById("tab-gh");
+    const tabCD = document.getElementById("tab-cd");
+    const panelGH = document.getElementById("panel-gh");
+    const panelCD = document.getElementById("panel-cd");
+
+    function selectTab(which){
+      const gh = which === "gh";
+      tabGH.setAttribute("aria-selected", gh ? "true" : "false");
+      tabCD.setAttribute("aria-selected", gh ? "false" : "true");
+      panelGH.hidden = !gh;
+      panelCD.hidden = gh;
+    }
+
+    tabGH.addEventListener("click", () => selectTab("gh"));
+    tabCD.addEventListener("click", () => selectTab("cd"));
+
+    // Lead form -> WhatsApp prefilled
+    document.getElementById("leadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const country = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value.trim();
+      const buyerType = document.getElementById("buyerType").value;
+      const needs = document.getElementById("needs").value.trim();
+
+      const message =
+`Hi ${BRAND_NAME}, my name is ${name}.
+Country: ${country}
+WhatsApp: ${phone}
+Buyer type: ${buyerType}
+Needs: ${needs || "Fridge + TV + lights + Wi-Fi (please advise best package)"}
+
+Please send:
+1) Cash price
+2) Installment options (if available)
+3) Recommended solar panel bundle + delivery details.`;
+
+      window.open(makeWhatsAppUrl(message), "_blank", "noopener");
+    });
+
+    // Footer year + init
+    document.getElementById("year").textContent = new Date().getFullYear();
+    setWhatsAppLinks();
+  </script>
+</body>
+</html>
