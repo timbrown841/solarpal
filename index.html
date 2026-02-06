@@ -434,7 +434,6 @@
 			<button class="tab" role="tab" aria-selected="false" aria-controls="panel-ng" id="tab-ng">Nigeria</button>
 			<button class="tab" role="tab" aria-selected="false" aria-controls="panel-ec" id="tab-ec">Ecaudor</button>
 			<button class="tab" role="tab" aria-selected="false" aria-controls="panel-uk" id="tab-uk">United Kingdom</button>
-			<button class="tab" role="tab" aria-selected="false" aria-controls="panel-usa" id="tab-usa">United States of America</button>
 			<button class="tab" role="tab" aria-selected="false" aria-controls="panel-int" id="tab-int">International</button>
           </div>
         </div>
@@ -463,6 +462,58 @@
               <div class="priceLine"><span>Message angle</span><strong>Professional backup power</strong></div>
             </div>
           </div>
+
+		<div id="panel-ng" class="card" role="tabpanel" aria-labelledby="tab-ng" hidden>
+			<h3>Nigeria</h3>
+			<p>
+				High-demand market for reliable backup power due to grid instability.
+				Ideal for homes, SMEs, clinics, and offices.
+			</p>
+			<div class="priceBox">
+    <div class="priceLine"><span>Voltage / Frequency</span><strong>230V / 50Hz</strong></div>
+    <div class="priceLine"><span>Best offer</span><strong>Cash + instalments</strong></div>
+    <div class="priceLine"><span>Common use</span><strong>Generator replacement</strong></div>
+  </div>
+</div>
+
+		<div id="panel-ec" class="card" role="tabpanel" aria-labelledby="tab-ec" hidden>
+  <h3>Ecuador</h3>
+  <p>
+    Suitable for residential and small business use, especially where clean,
+    silent backup power is required.
+  </p>
+  <div class="priceBox">
+    <div class="priceLine"><span>Voltage / Frequency</span><strong>120V / 60Hz</strong></div>
+    <div class="priceLine"><span>Best offer</span><strong>Cash</strong></div>
+    <div class="priceLine"><span>Common use</span><strong>Home & SME backup</strong></div>
+  </div>
+</div>
+
+		<div id="panel-uk" class="card" role="tabpanel" aria-labelledby="tab-uk" hidden>
+  <h3>United Kingdom</h3>
+  <p>
+    Premium off-grid and backup power for homes, mobile businesses,
+    and professional use.
+  </p>
+  <div class="priceBox">
+    <div class="priceLine"><span>Voltage / Frequency</span><strong>230V / 50Hz</strong></div>
+    <div class="priceLine"><span>Plug type</span><strong>UK Type G</strong></div>
+    <div class="priceLine"><span>Common use</span><strong>Home, mobile, emergency</strong></div>
+  </div>
+</div>
+
+		<div id="panel-int" class="card" role="tabpanel" aria-labelledby="tab-int" hidden>
+  <h3>International</h3>
+  <p>
+    We supply portable power stations globally.
+    Specifications can be adapted to local voltage, frequency, and plug types.
+  </p>
+  <div class="priceBox">
+    <div class="priceLine"><span>Voltage options</span><strong>120V / 230V</strong></div>
+    <div class="priceLine"><span>Frequency</span><strong>50Hz / 60Hz</strong></div>
+    <div class="priceLine"><span>Plug types</span><strong>UK / EU / US</strong></div>
+  </div>
+</div>
 
           <div class="card">
             <h3>What buyers get from SolarPal</h3>
@@ -710,21 +761,22 @@
     }
 
     // Tabs (Ghana / DR Congo)
-    const tabGH = document.getElementById("tab-gh");
-    const tabCD = document.getElementById("tab-cd");
-    const panelGH = document.getElementById("panel-gh");
-    const panelCD = document.getElementById("panel-cd");
+   const tabs = document.querySelectorAll('[role="tab"]');
+  const panels = document.querySelectorAll('[role="tabpanel"]');
 
-    function selectTab(which){
-      const gh = which === "gh";
-      tabGH.setAttribute("aria-selected", gh ? "true" : "false");
-      tabCD.setAttribute("aria-selected", gh ? "false" : "true");
-      panelGH.hidden = !gh;
-      panelCD.hidden = gh;
-    }
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Reset all tabs
+      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+      panels.forEach(p => p.hidden = true);
 
-    tabGH.addEventListener("click", () => selectTab("gh"));
-    tabCD.addEventListener("click", () => selectTab("cd"));
+      // Activate selected tab
+      tab.setAttribute('aria-selected', 'true');
+      const panelId = tab.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      if (panel) panel.hidden = false;
+    });
+  });
 
     // Lead form -> WhatsApp prefilled
     document.getElementById("leadForm").addEventListener("submit", (e) => {
@@ -757,4 +809,5 @@ Please send:
 </body>
 
 </html>
+
 
